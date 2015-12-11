@@ -1,5 +1,7 @@
 # nlighten backend web project
 
+![Travis CI status](https://travis-ci.org/yntelectual/nlighten.svg)
+
 This project provides REST endpoints for clients and frontends, and contains all business logic of Nlighten.
 
 ## build
