@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://xmlns.jcp.org/xml/ns/persistence
+        http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<!-- the simples possible persistence config. We are relying on the Default DS functionality of the Server. In real life you should explicitly mention
+		the data source and the dialect you want to use, along with other properties if relevant. -->
+	<persistence-unit name="primary" >
+		<!-- If you are running in a production environment, add a managed data source, this example data source is just for development and testing! -->
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+			<!-- Properties for Hibernate -->
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.hbm2ddl.import_files" value="META-INF/import.sql"/>
+		</properties>
+	</persistence-unit>
+</persistence>
