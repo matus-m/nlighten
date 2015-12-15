@@ -7,6 +7,12 @@ import javax.inject.Named;
 
 import me.nlighten.backend.cdi.annotations.Traced;
 
+/**
+ * Bean for testing traced interceptor 
+ * 
+ * @author Ronald Kriek
+ *
+ */
 @Named
 @Traced
 public class TracedTestBean {

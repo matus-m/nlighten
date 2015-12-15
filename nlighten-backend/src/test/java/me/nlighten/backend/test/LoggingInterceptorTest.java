@@ -19,8 +19,14 @@ import me.nlighten.backend.test.db.services.MethodVerbosityTestBean;
 import me.nlighten.backend.test.db.services.TracedTestBean;
 
 
+/**
+ * Test suit for testing the logging interceptor
+ * 
+ * @author Ronald Kriek
+ *
+ */
 @RunWith(Arquillian.class)
-public class ServiceMethodLoggingTest {
+public class LoggingInterceptorTest {
 	@Inject
 	private TracedTestBean serviceMethodLoggingTestBean;
 	@Inject
