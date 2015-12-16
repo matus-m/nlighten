@@ -10,13 +10,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * CDILogger list all available beans during application startup and log them to console.
+ * CDILoggingExtension list all available beans during application startup and log them to console.
  * 
  * @author Lubo3
  */
-public class CDILogger implements Extension {
+public class CDILoggingExtension implements Extension {
 
-  final Logger logger = LoggerFactory.getLogger(CDILogger.class);
+  final Logger logger = LoggerFactory.getLogger(CDILoggingExtension.class);
 
   /** system variable constant */
   private static final String ENABLE_NLIGHTEN_CDI_DEBUG_PROPERTY = "NLIGHTEN_ENABLE_CDI_DEBUG";

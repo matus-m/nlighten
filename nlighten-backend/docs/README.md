@@ -7,5 +7,5 @@ For example `server-configuration.md` with brief info about widlfly setup, `secu
 
 If possible, keep the docs short and up-to-date. 
 
-# CDI Logger
-CDILogger class list all available beans during application startup. This feature is by default disabled, but can be enabled by setting system variable "NLIGHTEN_ENABLE_CDI_DEBUG" to true on your server (-DNLIGHTEN_ENABLE_CDI_DEBUG=true).
+# CDI Logging Extension
+CDILoggingExtension class list all available beans during application startup. This feature is by default disabled, but can be enabled by setting system variable "NLIGHTEN_ENABLE_CDI_DEBUG" to true on your server (-DNLIGHTEN_ENABLE_CDI_DEBUG=true).
