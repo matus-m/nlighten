@@ -1,7 +1,8 @@
-package me.nlighten.backend.db.model;
+package me.nlighten.backend.config;
+
 
 public class NglightenConfig {
-  
+
   private String cdiDebugProperty;
 
   public String getCdiDebugProperty() {
@@ -11,5 +12,5 @@ public class NglightenConfig {
   public void setCdiDebugProperty(String cdiDebugProperty) {
     this.cdiDebugProperty = cdiDebugProperty;
   }
-  
+
 }
