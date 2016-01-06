@@ -13,18 +13,18 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
  */
 public class DateAdapter extends XmlAdapter<String, Date> {
 
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    public Date unmarshal(String v) throws Exception {
-        try {
-            return sdf.parse(v);
-        } catch (ParseException pe) {
-            throw new IllegalArgumentException("The date is not in correct format!");
-        }
+  public Date unmarshal(String v) throws Exception {
+    try {
+      return sdf.parse(v);
+    } catch (ParseException pe) {
+      throw new IllegalArgumentException("The date is not in correct format!");
     }
+  }
 
-    public String marshal(Date v) throws Exception {
-        return sdf.format(v);
-    }
+  public String marshal(Date v) throws Exception {
+    return sdf.format(v);
+  }
 
 }
