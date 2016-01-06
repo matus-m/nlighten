@@ -28,3 +28,4 @@ public class DateAdapter extends XmlAdapter<String, Date> {
   }
 
 }
+

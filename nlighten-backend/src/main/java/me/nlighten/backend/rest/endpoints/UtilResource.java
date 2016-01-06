@@ -19,6 +19,7 @@ import me.nlighten.backend.rest.model.enums.ServerStatusEnum;
 @Path("/")
 public class UtilResource {
 
+
   @GET
   @POST
   @Produces("application/json")
