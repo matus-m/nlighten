@@ -2,7 +2,10 @@ package me.nlighten.backend.rest.model;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import me.nlighten.backend.rest.model.enums.ServerStatusEnum;
+import me.nlighten.backend.rest.util.DateAdapter;
 
 /**
  * @author Martin
@@ -11,6 +14,7 @@ import me.nlighten.backend.rest.model.enums.ServerStatusEnum;
 public class ApiStatusDTO {
 
   private ServerStatusEnum status;
+  @XmlJavaTypeAdapter(type = Date.class, value = DateAdapter.class)
   private Date serverTime;
  
   public Date getServerTime() {
