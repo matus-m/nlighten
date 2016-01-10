@@ -70,6 +70,11 @@ public class NlightenConfigService implements Serializable {
     }
   }
   
+  /**
+   * reloadConfig reloads config POJO for provided class. 
+   *
+   * @param clazz the clazz
+   */
   public void reloadConfig(Class<T> clazz){
     loadJsonToPojo(clazz);
   }
