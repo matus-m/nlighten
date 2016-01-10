@@ -11,7 +11,6 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
 
-import org.apache.poi.hssf.record.formula.functions.T;
 import org.slf4j.Logger;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -75,8 +74,8 @@ public class NlightenConfigService implements Serializable {
    *
    * @param clazz the clazz
    */
-  public void reloadConfig(Class<T> clazz){
-    loadJsonToPojo(clazz);
+  public void reloadConfig(Object clazz){
+    loadJsonToPojo((Class) clazz);
   }
 
   /**
