@@ -107,12 +107,6 @@
       <version>1.0.0.Alpha7</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>com.googlecode.json-simple</groupId>
-      <artifactId>json-simple</artifactId>
-      <version>1.1</version>
-      <scope>test</scope>
-    </dependency>
 
   </dependencies>
 

@@ -1,7 +1,7 @@
 package me.nlighten.backend.config;
 
 
-public class NglightenConfig {
+public class NlightenConfig {
 
   private String cdiDebugProperty;
 
