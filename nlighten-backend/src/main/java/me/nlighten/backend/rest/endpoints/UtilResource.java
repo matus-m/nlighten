@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import me.nlighten.backend.rest.model.ApiStatusDTO;
 import me.nlighten.backend.rest.model.enums.ServerStatusEnum;
@@ -16,15 +17,15 @@ import me.nlighten.backend.rest.model.enums.ServerStatusEnum;
  * @author Martin
  *
  */
-@Path("/")
+@Path("/util")
 public class UtilResource {
 
 
   @GET
   @POST
-  @Produces("application/json")
+  @Produces(MediaType.APPLICATION_JSON)
   @Path("/apistatus")
-  public ApiStatusDTO getClichedMessage() {
+  public ApiStatusDTO getApiStatus() {
     ApiStatusDTO status = new ApiStatusDTO();
     status.setStatus(ServerStatusEnum.OK);
     status.setServerTime(new Date());
