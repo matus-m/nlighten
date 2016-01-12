@@ -10,7 +10,7 @@ import me.nlighten.backend.cdi.annotations.TracedVerbosity;
 import me.nlighten.backend.cdi.enums.VerbosityLevel;
 
 /**
- * Test verbosity annotation on class
+ * Bean for testing verbosity annotation on class
  * 
  * @author Ronald Kriek
  *
