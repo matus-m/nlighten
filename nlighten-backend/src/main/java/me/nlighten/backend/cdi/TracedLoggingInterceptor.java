@@ -4,7 +4,6 @@ import java.lang.reflect.Method;
 import java.util.Collection;
 
 import javax.annotation.Priority;
-import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
@@ -13,7 +12,6 @@ import javax.interceptor.InvocationContext;
 import org.slf4j.Logger;
 
 import me.nlighten.backend.cdi.annotations.Traced;
-import me.nlighten.backend.cdi.annotations.TracedVerbosity;
 import me.nlighten.backend.cdi.enums.VerbosityLevel;
 
 /**
@@ -41,9 +39,9 @@ public class TracedLoggingInterceptor {
     Class<?> resultClazz = method.getReturnType();
     String resultClazzStr = resultClazz.getSimpleName();
     
-    TracedVerbosity traced = clazz.getAnnotation(TracedVerbosity.class);
-    if(method.isAnnotationPresent(TracedVerbosity.class)){
-      traced = method.getAnnotation(TracedVerbosity.class);
+    Traced traced = clazz.getAnnotation(Traced.class);
+    if(method.isAnnotationPresent(Traced.class)){
+      traced = method.getAnnotation(Traced.class);
     }
     VerbosityLevel verbosityLevel = (traced == null) ? VerbosityLevel.BASIC : traced.value(); 
     

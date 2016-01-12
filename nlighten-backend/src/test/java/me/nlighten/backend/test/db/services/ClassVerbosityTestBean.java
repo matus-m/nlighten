@@ -6,7 +6,6 @@ import java.util.List;
 import javax.inject.Named;
 
 import me.nlighten.backend.cdi.annotations.Traced;
-import me.nlighten.backend.cdi.annotations.TracedVerbosity;
 import me.nlighten.backend.cdi.enums.VerbosityLevel;
 
 /**
@@ -16,8 +15,7 @@ import me.nlighten.backend.cdi.enums.VerbosityLevel;
  *
  */
 @Named
-@Traced
-@TracedVerbosity(VerbosityLevel.VERBOSE)
+@Traced(VerbosityLevel.VERBOSE)
 public class ClassVerbosityTestBean {
   public List<String> interceptorArraySize() {
     List<String> myList = new ArrayList<>();

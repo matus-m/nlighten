@@ -5,12 +5,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import javax.enterprise.util.Nonbinding;
 import javax.interceptor.InterceptorBinding;
 
 import me.nlighten.backend.cdi.enums.VerbosityLevel;
 
 /**
- * Log bean message execution. Default verbosity is set to BASIC.
+ * Log bean message execution. 
+ * Takes an optional value from {@link VerbosityLevel}. The default verbosity is set to BASIC.
  * 
  * @see VerbosityLevel
  * @author Ronald Kriek
@@ -20,4 +22,6 @@ import me.nlighten.backend.cdi.enums.VerbosityLevel;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
 public @interface Traced {
+  @Nonbinding
+  VerbosityLevel value() default VerbosityLevel.BASIC;
 }
