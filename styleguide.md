@@ -6,8 +6,13 @@ If using Eclipse, enable formatting on save:
 
 ## java code
 
-use google styled formatting as described here http://google.github.io/styleguide/javaguide.html.  
-If you use Eclipse, import the format from https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml.
+- use google styled formatting as described here:  http://google.github.io/styleguide/javaguide.html.  
+- If you use Eclipse, import the format from:  https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml.
+
+## xml
+
+- line wrap - 100 chars
+- indent by 2 spaces, no tabs. In Eclipse this can be configured via `Window > Preferences > XML > XML Files > Editor`
 
 ## html, css
 

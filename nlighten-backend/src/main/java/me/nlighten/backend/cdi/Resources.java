@@ -1,5 +1,6 @@
 package me.nlighten.backend.cdi;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.persistence.EntityManager;
@@ -12,6 +13,7 @@ import org.slf4j.LoggerFactory;
 /**
  * The Class Resources provides Java EE resources (e.g. persistence context, loggger).
  */
+@ApplicationScoped
 public class Resources {
 
   /** The entity manager resource. */
