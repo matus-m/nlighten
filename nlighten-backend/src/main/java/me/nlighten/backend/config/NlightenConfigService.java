@@ -90,6 +90,7 @@ public class NlightenConfigService implements Serializable {
     InputStream inputStream = clazz.getResourceAsStream(clazz.getSimpleName() + ".json");
     ObjectMapper mapper = new ObjectMapper();
     try {
+      result = clazz.newInstance();
       if (CONFIGURATION_PATH != null) {
         result = mapper.readValue(new File(CONFIGURATION_PATH), clazz);
       } else {
@@ -101,6 +102,8 @@ public class NlightenConfigService implements Serializable {
     } catch (JsonMappingException e) {
       logger.error("Error durring mapping config file: " + e.getMessage());
     } catch (IOException e) {
+      logger.error("Error durring reading config file: " + e.getMessage());
+    } catch (Exception e) {
       logger.error("Error durring reading config file: " + e.getMessage());
     }
     return result;
