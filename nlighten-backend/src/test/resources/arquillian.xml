@@ -12,7 +12,6 @@
 		<protocol type="Servlet 3.0"></protocol>
 		<configuration>
 			<property name="serverConfig">standalone.xml</property>
-<!-- 			<property name="serverConfig">${project.basedir}/src/test/resources/test-standalone.xml</property> -->
 			<property name="javaVmArguments">-Xms256m -Xmx1024m -XX:MaxPermSize=512m  </property>
 		</configuration>
 	</container>
@@ -20,7 +19,6 @@
 		<protocol type="Servlet 3.0"></protocol>
 		<configuration>
 			<property name="serverConfig">standalone.xml</property>
-<!-- 			<property name="serverConfig">${project.basedir}/src/test/resources/test-standalone.xml</property> -->
 			<property name="javaVmArguments">-Xms256m -Xmx1024m -XX:MaxPermSize=512m    -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=y</property>
 		</configuration>
 	</container>
