@@ -11,7 +11,6 @@ import me.nlighten.backend.rest.model.enums.ServerStatusEnum;
 public class ApiStatusDTO {
 
   private ServerStatusEnum status;
-  // @XmlJavaTypeAdapter(type = Date.class, value = DateAdapter.class)
   private Date serverTime;
 
   public Date getServerTime() {
