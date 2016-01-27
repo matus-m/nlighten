@@ -8,7 +8,8 @@ For example `server-configuration.md` with brief info about widlfly setup, `secu
 If possible, keep the docs short and up-to-date. 
 
 # CDI Logging Extension
-CDILoggingExtension class list all available beans during application startup. This feature is by default disabled, but can be enabled by setting system variable "NLIGHTEN_ENABLE_CDI_DEBUG" to true on your server (-DNLIGHTEN_ENABLE_CDI_DEBUG=true).
+
+`CDILoggingExtension` class list all available beans during application startup. This feature is by default disabled, but can be enabled by setting system variable `NLIGHTEN_ENABLE_CDI_DEBUG` to true on your server (-DNLIGHTEN_ENABLE_CDI_DEBUG=true).
 
 # CDI Trace Interceptor
 
@@ -18,4 +19,9 @@ CDILoggingExtension class list all available beans during application startup. T
 
 To have functioning tests the `JAVA_HOME` env. variable has to be set to point to your JDK8. By default the profile `wildfly-managed-arquillian` is enabled. It downloads an instance of Wildfly 10.0.0.CR4 and runs tests on it. An example of a functioning test can be found in `LoggingInterceptorTest.java`.
 
-For debugging tests run maven with profile `wildfly-managed-arquillian-debug`. To attach a debugger to this instance in `Eclipse` create a new debug run configuration of type `Remote Java Application`, set connection type to `Standard(socket attach)` and set it to listen on port `8787` (host = `localhost`).   
+For debugging tests run maven with profile `wildfly-managed-arquillian-debug`. To attach a debugger to this instance in `Eclipse` create a new debug run configuration of type `Remote Java Application`, set connection type to `Standard(socket attach)` and set it to listen on port `8787` (host = `localhost`).
+
+# Configuration framework
+
+`NlightenConfigService` loads configuration data from `JSON` file to `POJO`. `JSON` has to be located in the same classpath as `POJO` or it's path can be set by system variable `NGLIGHTEN_CONFIGURATION_FILE_PATH`. Also after `POJO` is loaded, data are set to configuration cache, so every next call for already loaded `POJO` is get from cache. In order to reload configuration cache with new data, corresponding method has to be called. For more details see `NlightenConfigServiceTest`.
+ 
