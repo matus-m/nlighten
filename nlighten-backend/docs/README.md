@@ -23,5 +23,5 @@ For debugging tests run maven with profile `wildfly-managed-arquillian-debug`. T
 
 # Configuration framework
 
-`NlightenConfigService` loads configuration data from `JSON` file to `POJO`. `JSON` has to be located in the same classpath as `POJO` or it's path can be set by system variable `NGLIGHTEN_CONFIGURATION_FILE_PATH`. Also after `POJO` is loaded, data are set to configuration cache, so every next call for already loaded `POJO` is get from cache. In order to reload configuration cache with new data, corresponding method has to be called. For more details see `NlightenConfigServiceTest`.
+`NlightenConfigService` loads configuration data from `JSON` file to `POJO`. `JSON` has to be located in the same classpath as `POJO` or it's path can be set by system variable `NGLIGHTEN_CONFIGURATION_FILE_PATH`. Also after `POJO` is loaded, data are set to configuration cache, so every next call for already loaded `POJO` gets data from cache. In order to reload configuration cache with new data, corresponding method has to be called. For more details see `NlightenConfigServiceTest`.
  
