@@ -32,7 +32,7 @@ public class NlightenConfigService implements Serializable {
   private static final long serialVersionUID = -4394127830768605021L;
 
   /** system variable constant */
-  private static final String CONFIGURATION_PATH =
+  private static String CONFIGURATION_PATH =
       System.getProperty("NGLIGHTEN_CONFIGURATION_FILE_PATH");
 
   /** The config cache is holding POJOs with configuration data. */
@@ -68,13 +68,13 @@ public class NlightenConfigService implements Serializable {
       loadJsonToPojo(object.getClass());
     }
   }
-  
+
   /**
-   * reloadConfig reloads config POJO for provided class. 
+   * reloadConfig reloads config POJO for provided class.
    *
    * @param clazz the clazz
    */
-  public void reloadConfig(Object clazz){
+  public void reloadConfig(Object clazz) {
     loadJsonToPojo((Class) clazz);
   }
 
@@ -90,7 +90,7 @@ public class NlightenConfigService implements Serializable {
     InputStream inputStream = clazz.getResourceAsStream(clazz.getSimpleName() + ".json");
     ObjectMapper mapper = new ObjectMapper();
     try {
-      result = clazz.newInstance();
+      CONFIGURATION_PATH = System.getProperty("NGLIGHTEN_CONFIGURATION_FILE_PATH");
       if (CONFIGURATION_PATH != null) {
         result = mapper.readValue(new File(CONFIGURATION_PATH), clazz);
       } else {
@@ -102,9 +102,7 @@ public class NlightenConfigService implements Serializable {
     } catch (JsonMappingException e) {
       logger.error("Error durring mapping config file: " + e.getMessage());
     } catch (IOException e) {
-      logger.error("Error durring reading config file: " + e.getMessage());
-    } catch (Exception e) {
-      logger.error("Error durring reading config file: " + e.getMessage());
+      logger.error("Error: " + e.getMessage());
     }
     return result;
   }
