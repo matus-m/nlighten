@@ -24,4 +24,16 @@ For debugging tests run maven with profile `wildfly-managed-arquillian-debug`. T
 # Configuration framework
 
 `NlightenConfigService` loads configuration data from `JSON` file to `POJO`. `JSON` has to be located in the same classpath as `POJO` or it's path can be set by system variable `NGLIGHTEN_CONFIGURATION_FILE_PATH`. Also after `POJO` is loaded, data are set to configuration cache, so every next call for already loaded `POJO` gets data from cache. In order to reload configuration cache with new data, corresponding method has to be called. For more details see `NlightenConfigServiceTest`.
+
+# Internationalization
+`I18nUtil` is class dedicated to translating given `Enum` keys, to their respective translated texts.
+You can use different declarations o `translate` method to achieve this goal. For translation to be successful, one must adhere to following conventions:
+1. There must be a `Enum` class `[EnumName]` defined in the source folder with path `[EnumPath]`.
+2. There must be property file containg transations in the resource folder with this file path:	
+	`\translations\[EnumPath]\[EnumName]_[language as ISO 639-1].properties`	
+3. For each `Enum` class value there must be key matching it's name in property file.
+4. The value of the property key is the translation, that is returned by `I18nUtil#translate`.
+P.S.: Use of `CAMEL_CASE` formatting for enum\property keys is recommended.
+
+		
  

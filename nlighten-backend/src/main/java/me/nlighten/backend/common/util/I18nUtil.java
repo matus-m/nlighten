@@ -1,8 +1,8 @@
 package me.nlighten.backend.common.util;
 
-import java.io.File;
 import java.text.MessageFormat;
 import java.util.Locale;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 /**
@@ -13,12 +13,15 @@ import java.util.ResourceBundle;
  */
 public class I18nUtil {
 
+  private static Locale defaultLocale = new Locale("en");
+  private static MessageFormat formatter = new MessageFormat("");
+
   /**
    * {@code translate} defaults to {@link I18nUtil#translate(Enum, Locale, Object...)}.
    *
    * @see I18nUtil#translate(Enum, Locale, Object...)
    */
-  public static String translate(Enum key, Locale locale) {
+  public static String translate(Enum key, Locale locale) throws MissingResourceException {
     return translate(key, locale, null);
   }
 
@@ -33,23 +36,26 @@ public class I18nUtil {
    * @param args list of arguments to be applied to required message. Can be empty || null
    * @return translated message. <i>null</i> if key is not specified
    */
-  public static String translate(Enum key, Locale locale, Object... args) {
-    if (key == null) {
-      return null;
-    }
-    if (locale == null) {
-      locale = new Locale("en");
-    }
-    String enumClassName = key.getClass().getSimpleName();
-    ResourceBundle messages = ResourceBundle.getBundle(
-        "translations" + File.separator + enumClassName + File.separator + enumClassName, locale);
-    if (args == null || args.length == 0) {
-      return messages.getString(key.name());
-    } else {
-      MessageFormat formatter = new MessageFormat("");
-      formatter.setLocale(locale);
-      formatter.applyPattern(messages.getString(key.name()));
-      return formatter.format(args);
+  public static String translate(Enum key, Locale locale, Object... args)
+      throws MissingResourceException {
+    try {
+      if (key == null) {
+        return null;
+      }
+      if (locale == null) {
+        locale = defaultLocale;
+      }
+      String enumClassFQN = key.getClass().getName();
+      ResourceBundle messages = ResourceBundle.getBundle("translations." + enumClassFQN, locale);
+      if (args == null || args.length == 0) {
+        return messages.getString(key.name());
+      } else {
+        formatter.setLocale(locale);
+        formatter.applyPattern(messages.getString(key.name()));
+        return formatter.format(args);
+      }
+    } catch (MissingResourceException e) {
+      throw e;
     }
   }
 }
