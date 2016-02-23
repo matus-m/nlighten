@@ -2,8 +2,10 @@ package me.nlighten.backend.common.util;
 
 import java.text.MessageFormat;
 import java.util.Locale;
-import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Utility providing translation capabilities.
@@ -13,6 +15,7 @@ import java.util.ResourceBundle;
  */
 public class I18nUtil {
 
+  private static final Logger log = LoggerFactory.getLogger(I18nUtil.class);
   private static Locale defaultLocale = new Locale("en");
   private static MessageFormat formatter = new MessageFormat("");
 
@@ -21,7 +24,7 @@ public class I18nUtil {
    *
    * @see I18nUtil#translate(Enum, Locale, Object...)
    */
-  public static String translate(Enum key, Locale locale) throws MissingResourceException {
+  public static String translate(Enum key, Locale locale) {
     return translate(key, locale, null);
   }
 
@@ -36,8 +39,7 @@ public class I18nUtil {
    * @param args list of arguments to be applied to required message. Can be empty || null
    * @return translated message. <i>null</i> if key is not specified
    */
-  public static String translate(Enum key, Locale locale, Object... args)
-      throws MissingResourceException {
+  public static String translate(Enum key, Locale locale, Object... args) {
     try {
       if (key == null) {
         return null;
@@ -46,16 +48,29 @@ public class I18nUtil {
         locale = defaultLocale;
       }
       String enumClassFQN = key.getClass().getName();
-      ResourceBundle messages = ResourceBundle.getBundle("translations." + enumClassFQN, locale);
+      String value = "";
+      if ("true"
+          .equals(System.getProperty("SEPARATE_FOLDERS_FOR_NLIGHTEN_TRANSLATIONS").toLowerCase())) {
+        ResourceBundle messages = ResourceBundle.getBundle("translations." + enumClassFQN, locale);
+        value = messages.getString(key.name());
+      } else {
+        String propertyFileClasspath = "translations/" + enumClassFQN
+            + (locale == null ? ".properties" : "_" + locale.getLanguage() + ".properties");
+        value = PropertiesUtil.returnValueFromPropertyFile(propertyFileClasspath, key.name());
+      }
       if (args == null || args.length == 0) {
-        return messages.getString(key.name());
+        return value;
       } else {
         formatter.setLocale(locale);
-        formatter.applyPattern(messages.getString(key.name()));
+        formatter.applyPattern(value);
         return formatter.format(args);
       }
-    } catch (MissingResourceException e) {
-      throw e;
+    } catch (Exception e) {
+      log.warn("Resource missing for: " + key.getClass().getName() + "." + key.name() + " Locale: "
+          + locale.getLanguage());
+      return key.name();
     }
   }
+
+
 }
