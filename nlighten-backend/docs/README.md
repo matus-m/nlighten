@@ -38,7 +38,4 @@ You can use different declarations o `translate` method to achieve this goal. Fo
 	`\translations\[EnumPath].[EnumName]_[language as ISO 639-1].properties`	
 3. For each `Enum` class value there must be key matching it's name in property file.
 4. The value of the property key is the translation, that is returned by `I18nUtil#translate`.
-P.S.: Use of `CAMEL_CASE` formatting for enum\property keys is recommended.
-
-		
- 
+P.S.: Use of `CAMEL_CASE` formatting for enum\property keys is recommended.		
