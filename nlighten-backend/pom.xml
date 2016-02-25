@@ -16,8 +16,8 @@
     <version.javaee_api>7.0</version.javaee_api>
     <version.junit>4.11</version.junit>
     <version.arquillian_core>1.1.8.Final</version.arquillian_core>
-    <version.wildfly>10.0.0.CR4</version.wildfly>
-    <version.wildfly.bom>10.0.0.CR4</version.wildfly.bom>
+    <version.wildfly>10.0.0.Final</version.wildfly>
+    <version.wildfly.bom>10.0.0.Final</version.wildfly.bom>
     <!-- plugin versions -->
     <version.compiler.plugin>3.1</version.compiler.plugin>
     <version.surefire.plugin>2.10</version.surefire.plugin>
