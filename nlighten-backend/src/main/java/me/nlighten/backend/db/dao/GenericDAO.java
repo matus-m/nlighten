@@ -2,7 +2,6 @@ package me.nlighten.backend.db.dao;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
@@ -23,8 +22,7 @@ import me.nlighten.backend.db.dao.exception.DAOMessageException;
  * 
  * @author Lubo3
  */
-@Stateless
-@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+
 public class GenericDAO<T> {
 
   /** The em. */
@@ -45,6 +43,7 @@ public class GenericDAO<T> {
       em.flush();
       return t;
     } catch (Exception e) {
+      e.printStackTrace();
       throw new DAOException(DAOMessageException.OBJECT_COULD_NOT_BE_SAVED, e);
     }
   }
@@ -115,11 +114,11 @@ public class GenericDAO<T> {
    * @throws DAOException the DAO exception
    */
   @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public boolean delete(T t) throws DAOException {
+  public boolean delete(Class<T> t, Object id) throws DAOException {
     try {
       boolean result = false;
-      t = em.merge(t);
-      em.remove(t);
+      T toRemove = em.find(t, id);
+      em.remove(toRemove);
       result = true;
       return result;
     } catch (Exception e) {
@@ -127,4 +126,7 @@ public class GenericDAO<T> {
     }
   }
 
+  public EntityManager getEm() {
+    return em;
+  }
 }

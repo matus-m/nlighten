@@ -10,7 +10,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 
-import me.nlighten.backend.db.dao.GenericDAO;
+import me.nlighten.backend.db.dao.CommentDAO;
+import me.nlighten.backend.db.dao.CourseDAO;
+import me.nlighten.backend.db.dao.LessonDAO;
+import me.nlighten.backend.db.dao.QuestionDAO;
 import me.nlighten.backend.db.dao.exception.DAOException;
 import me.nlighten.backend.db.model.Comment;
 import me.nlighten.backend.db.model.Course;
@@ -32,19 +35,19 @@ public class CourseDAOTest extends AbstractTest {
 
   /** The course dao. */
   @Inject
-  private GenericDAO<Course> courseDAO;
+  private CourseDAO courseDAO;
 
   /** The comment dao. */
   @Inject
-  private GenericDAO<Comment> commentDAO;
+  private CommentDAO commentDAO;
 
   /** The lesson dao. */
   @Inject
-  private GenericDAO<Lesson> lessonDAO;
+  private LessonDAO lessonDAO;
 
   /** The question dao. */
   @Inject
-  private GenericDAO<Question> questionDAO;
+  private QuestionDAO questionDAO;
 
   /**
    * Save test.
@@ -166,7 +169,7 @@ public class CourseDAOTest extends AbstractTest {
         Assert.assertEquals(question.getId(), savedQuestion.getId());
       }
 
-      Boolean isDeleted = courseDAO.delete(savedCourse);
+      Boolean isDeleted = courseDAO.delete(Course.class, savedCourse.getId());
       Assert.assertTrue(isDeleted);
       Course foundCourse = courseDAO.findById(Course.class, savedCourse.getId());
       Assert.assertNull(foundCourse);
