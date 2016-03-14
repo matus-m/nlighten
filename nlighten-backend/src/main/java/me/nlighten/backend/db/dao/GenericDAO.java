@@ -45,7 +45,7 @@ public class GenericDAO<T> {
       em.flush();
       return t;
     } catch (Exception e) {
-      throw new DAOException(DAOMessageException.OBJECT_COULD_NOT_BE_SAVED, e);
+      throw new DAOException(e, DAOMessageException.OBJECT_COULD_NOT_BE_SAVED);
     }
   }
 
@@ -64,7 +64,7 @@ public class GenericDAO<T> {
       em.flush();
       return result;
     } catch (Exception e) {
-      throw new DAOException(DAOMessageException.OBJECT_COULD_NOT_BE_MERGED, e);
+      throw new DAOException(e, DAOMessageException.OBJECT_COULD_NOT_BE_MERGED);
     }
   }
 
@@ -82,7 +82,7 @@ public class GenericDAO<T> {
     } catch (NoResultException nre) {
       return null;
     } catch (Exception e) {
-      throw new DAOException(DAOMessageException.COULD_NOT_FIND_OBJECT_BY_ID, e);
+      throw new DAOException(e, DAOMessageException.COULD_NOT_FIND_OBJECT_BY_ID);
     }
   }
 
@@ -103,7 +103,7 @@ public class GenericDAO<T> {
       TypedQuery<T> typedQuery = em.createQuery(cq);
       return typedQuery.getResultList();
     } catch (Exception e) {
-      throw new DAOException(DAOMessageException.COULD_NOT_FIND_ALL_OBJECTS, e);
+      throw new DAOException(e, DAOMessageException.COULD_NOT_FIND_ALL_OBJECTS);
     }
   }
 
@@ -123,7 +123,7 @@ public class GenericDAO<T> {
       result = true;
       return result;
     } catch (Exception e) {
-      throw new DAOException(DAOMessageException.OBJECT_COULD_NOT_BE_DELETED, e);
+      throw new DAOException(e, DAOMessageException.OBJECT_COULD_NOT_BE_DELETED);
     }
   }
 
