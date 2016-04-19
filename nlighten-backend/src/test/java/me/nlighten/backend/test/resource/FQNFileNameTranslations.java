@@ -1,0 +1,5 @@
+package me.nlighten.backend.test.resource;
+
+public enum FQNFileNameTranslations {
+  REGULAR_TRANSLATION, EMPTY_TRANSLATION, ARGUMENT_TRANSLATION, TRANSLATION_WITH_EQUALS_SIGN, MISSING_TRANSLATION
+}
