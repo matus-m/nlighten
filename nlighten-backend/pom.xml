@@ -3,9 +3,13 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.nlighten</groupId>
+  <parent>
+    <groupId>org.nlighten</groupId>
+    <artifactId>nglighten-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
   <artifactId>nglighten-backend</artifactId>
-  <version>1.0-SNAPSHOT</version>
   <description>Nlighten Backend</description>
   <packaging>war</packaging>
 
@@ -78,7 +82,7 @@
       <version>2.6.3</version>
       <scope>provided</scope>
     </dependency>
-    
+
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jpamodelgen</artifactId>
@@ -145,7 +149,7 @@
 
   </build>
 
-  <profiles>
+  <profiles>   
     <profile>
       <id>wildfly-managed-arquillian</id>
       <activation>
