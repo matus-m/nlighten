@@ -67,7 +67,7 @@ public class LessonEndpoint {
   @PUT
   @Path("/{id}")
   public LessonDTO update(@PathParam("id") long id, LessonDTO lessonDTO) throws DAOException {
-    Lesson foundlesson = lessonDAO.findById(Lesson.class, id);
+    Lesson foundlesson = lessonDAO.findById(id);
     Lesson lesson = lessonDtoMapper.toLesson(lessonDTO, foundlesson);
 
     lesson = lessonDAO.merge(lesson);
@@ -90,7 +90,7 @@ public class LessonEndpoint {
       Lesson lesson = lessonDAO.loadById(graphName, id);
       return lessonDtoMapper.toLessonDTOWithCollections(lesson);
     } else {
-      Lesson lesson = lessonDAO.findById(Lesson.class, id);
+      Lesson lesson = lessonDAO.findById(id);
       return lessonDtoMapper.toLessonDTO(lesson);
     }
   }
@@ -104,7 +104,7 @@ public class LessonEndpoint {
   @GET
   @Path("/")
   public List<LessonDTO> findAll() throws DAOException {
-    List<Lesson> lessons = lessonDAO.findAll(Lesson.class);
+    List<Lesson> lessons = lessonDAO.findAll();
     return lessonDtoMapper.toLessonsDTO(lessons);
   }
 
@@ -118,6 +118,6 @@ public class LessonEndpoint {
   @DELETE
   @Path("/{id}")
   public boolean delete(@PathParam("id") long id) throws DAOException {
-    return lessonDAO.delete(Lesson.class, id);
+    return lessonDAO.deleteById(id);
   }
 }

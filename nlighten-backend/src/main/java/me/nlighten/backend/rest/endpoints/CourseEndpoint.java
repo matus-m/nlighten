@@ -66,7 +66,7 @@ public class CourseEndpoint {
   @PUT
   @Path("/{id}")
   public CourseDTO update(@PathParam("id") long id, CourseDTO courseDTO) throws DAOException {
-    Course foundCourse = courseDAO.findById(Course.class, id);
+    Course foundCourse = courseDAO.findById(id);
     Course course = courseMapper.toCourse(courseDTO, foundCourse);
     course = courseDAO.merge(course);
     return courseMapper.toCourseDTO(course);
@@ -89,7 +89,7 @@ public class CourseEndpoint {
       course = courseDAO.loadById(graphName, id);
       return courseMapper.toCourseDTOWithCollections(course);
     } else {
-      course = courseDAO.findById(Course.class, id);
+      course = courseDAO.findById(id);
       return courseMapper.toCourseDTO(course);
     }
   }
@@ -103,7 +103,7 @@ public class CourseEndpoint {
   @GET
   @Path("/")
   public List<CourseDTO> findAll() throws DAOException {
-    List<Course> courses = courseDAO.findAll(Course.class);
+    List<Course> courses = courseDAO.findAll();
     return courseMapper.toCoursesDTO(courses);
   }
 
@@ -117,6 +117,6 @@ public class CourseEndpoint {
   @DELETE
   @Path("/{id}")
   public boolean delete(@PathParam("id") long id) throws DAOException {
-    return courseDAO.delete(Course.class, id);
+    return courseDAO.deleteById(id);
   }
 }

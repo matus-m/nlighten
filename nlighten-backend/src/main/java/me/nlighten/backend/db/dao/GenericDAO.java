@@ -1,5 +1,7 @@
 package me.nlighten.backend.db.dao;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
 
 import javax.ejb.TransactionAttribute;
@@ -28,6 +30,28 @@ public class GenericDAO<T> {
   /** The em. */
   @Inject
   private EntityManager em;
+
+  /** The entity class. */
+  private Class<T> entityClass;
+
+  /**
+   * Instantiates a new generic dao.
+   */
+  public GenericDAO() {
+    Type genericSuperclass = getClass().getGenericSuperclass();
+    if (genericSuperclass instanceof Class) {
+      genericSuperclass = ((Class<?>) genericSuperclass).getGenericSuperclass();
+    }
+    ParameterizedType parameterizedType = (ParameterizedType) genericSuperclass;
+    Type type = parameterizedType.getActualTypeArguments()[0];
+    Class<T> tmp = null;
+    if (type instanceof Class) {
+      tmp = (Class<T>) type;
+    } else if (type instanceof ParameterizedType) {
+      tmp = (Class<T>) ((ParameterizedType) type).getRawType();
+    }
+    this.entityClass = tmp;
+  }
 
   /**
    * Save.
@@ -75,9 +99,9 @@ public class GenericDAO<T> {
    * @return the t
    * @throws DAOException the DAO exception
    */
-  public T findById(Class<T> t, Object id) throws DAOException {
+  public T findById(Object id) throws DAOException {
     try {
-      return em.find(t, id);
+      return em.find(entityClass, id);
     } catch (NoResultException nre) {
       return null;
     } catch (Exception e) {
@@ -92,17 +116,37 @@ public class GenericDAO<T> {
    * @return the list
    * @throws DAOException the DAO exception
    */
-  public List<T> findAll(Class<T> t) throws DAOException {
+  public List<T> findAll() throws DAOException {
     try {
       CriteriaBuilder cb = em.getCriteriaBuilder();
-      CriteriaQuery<T> cq = cb.createQuery(t);
+      CriteriaQuery<T> cq = cb.createQuery(entityClass);
 
-      Root<T> root = cq.from(t);
+      Root<T> root = cq.from(entityClass);
 
       TypedQuery<T> typedQuery = em.createQuery(cq);
       return typedQuery.getResultList();
     } catch (Exception e) {
       throw new DAOException(DAOMessageException.COULD_NOT_FIND_ALL_OBJECTS, e);
+    }
+  }
+
+  /**
+   * Delete by id.
+   *
+   * @param id the id
+   * @return true, if successful
+   * @throws DAOException the DAO exception
+   */
+  @TransactionAttribute(TransactionAttributeType.REQUIRED)
+  public boolean deleteById(Object id) throws DAOException {
+    try {
+      boolean result = false;
+      Object toRemove = findById(id);
+      em.remove(toRemove);
+      result = true;
+      return result;
+    } catch (Exception e) {
+      throw new DAOException(DAOMessageException.OBJECT_COULD_NOT_BE_DELETED, e);
     }
   }
 
@@ -114,11 +158,10 @@ public class GenericDAO<T> {
    * @throws DAOException the DAO exception
    */
   @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public boolean delete(Class<T> t, Object id) throws DAOException {
+  public boolean delete(T t) throws DAOException {
     try {
       boolean result = false;
-      T toRemove = em.find(t, id);
-      em.remove(toRemove);
+      em.remove(t);
       result = true;
       return result;
     } catch (Exception e) {

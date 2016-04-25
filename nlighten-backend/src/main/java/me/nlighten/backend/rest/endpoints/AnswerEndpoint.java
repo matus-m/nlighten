@@ -65,7 +65,7 @@ public class AnswerEndpoint {
   @PUT
   @Path("/{id}")
   public AnswerDTO update(@PathParam("id") long id, AnswerDTO answerDTO) throws DAOException {
-    Answer foundAnswer = answerDAO.findById(Answer.class, id);
+    Answer foundAnswer = answerDAO.findById(id);
     Answer answer = answerMapper.toAnswer(answerDTO, foundAnswer);
 
     answer = answerDAO.merge(answer);
@@ -82,7 +82,7 @@ public class AnswerEndpoint {
   @GET
   @Path("/{id}")
   public AnswerDTO findById(@PathParam("id") long id) throws DAOException {
-    Answer answer = answerDAO.findById(Answer.class, id);
+    Answer answer = answerDAO.findById(id);
     return answerMapper.toAnswerDTO(answer);
   }
 
@@ -95,7 +95,7 @@ public class AnswerEndpoint {
   @GET
   @Path("/")
   public List<AnswerDTO> findAll() throws DAOException {
-    List<Answer> answers = answerDAO.findAll(Answer.class);
+    List<Answer> answers = answerDAO.findAll();
     return answerMapper.toAnswersDTO(answers);
   }
 
@@ -109,6 +109,6 @@ public class AnswerEndpoint {
   @DELETE
   @Path("/{id}")
   public boolean delete(@PathParam("id") long id) throws DAOException {
-    return answerDAO.delete(Answer.class, id);
+    return answerDAO.deleteById(id);
   }
 }

@@ -37,6 +37,9 @@ import me.nlighten.backend.db.enums.Difficulty;
 @Table(name = "COURSE")
 public class Course extends TraceAble {
 
+  /** The load by id constant. */
+  public static String LOAD_BY_ID = "Course.loadById";
+
   /** The title. */
   private String title;
 

@@ -31,6 +31,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "QUESTION")
 public class Question extends TraceAble {
+  
+  /** The load by id constant. */
+  public static String LOAD_BY_ID = "Question.loadById";
 
   /** The author. */
   private String author;

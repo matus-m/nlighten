@@ -66,7 +66,7 @@ public class QuestionEndpoint {
   @PUT
   @Path("/{id}")
   public QuestionDTO update(@PathParam("id") long id, QuestionDTO questionDTO) throws DAOException {
-    Question foundQuestion = questionDAO.findById(Question.class, id);
+    Question foundQuestion = questionDAO.findById(id);
     Question question = questionMapper.toQuestion(questionDTO, foundQuestion);
 
     question = questionDAO.merge(question);
@@ -89,7 +89,7 @@ public class QuestionEndpoint {
       Question question = questionDAO.loadById(graphName, id);
       return questionMapper.toQuestionDTOWithCollections(question);
     } else {
-      Question question = questionDAO.findById(Question.class, id);
+      Question question = questionDAO.findById(id);
       return questionMapper.toQuestionDTO(question);
     }
   }
@@ -103,7 +103,7 @@ public class QuestionEndpoint {
   @GET
   @Path("/")
   public List<QuestionDTO> findAll() throws DAOException {
-    List<Question> questions = questionDAO.findAll(Question.class);
+    List<Question> questions = questionDAO.findAll();
     return questionMapper.toQuestionsDTO(questions);
   }
 
@@ -117,6 +117,6 @@ public class QuestionEndpoint {
   @DELETE
   @Path("/{id}")
   public boolean delete(@PathParam("id") long id) throws DAOException {
-    return questionDAO.delete(Question.class, id);
+    return questionDAO.deleteById(id);
   }
 }

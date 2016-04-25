@@ -36,6 +36,9 @@ import lombok.Setter;
 @Table(name = "LESSON")
 public class Lesson extends TraceAble {
 
+  /** The load by id constant. */
+  public static String LOAD_BY_ID = "Lesson.loadById";
+
   /** The title. */
   private String title;
 

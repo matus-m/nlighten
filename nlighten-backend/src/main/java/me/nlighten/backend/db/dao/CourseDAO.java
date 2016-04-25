@@ -28,7 +28,7 @@ public class CourseDAO extends GenericDAO<Course> {
    */
   public Course loadById(String graphName, Long id) throws DAOException {
     try {
-      return (Course) getEm().createNamedQuery("Course.loadById").setParameter("id", id)
+      return (Course) getEm().createNamedQuery(Course.LOAD_BY_ID).setParameter("id", id)
           .setHint("javax.persistence.loadgraph", getEm().getEntityGraph(graphName))
           .getSingleResult();
     } catch (NoResultException nre) {

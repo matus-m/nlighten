@@ -65,7 +65,7 @@ public class CommentEndpoint {
   @PUT
   @Path("/{id}")
   public CommentDTO update(@PathParam("id") long id, CommentDTO commentDTO) throws DAOException {
-    Comment foundComment = commentDAO.findById(Comment.class, id);
+    Comment foundComment = commentDAO.findById(id);
     Comment comment = commentMapper.toComment(commentDTO, foundComment);
 
     comment = commentDAO.merge(comment);
@@ -82,7 +82,7 @@ public class CommentEndpoint {
   @GET
   @Path("/{id}")
   public CommentDTO findById(@PathParam("id") long id) throws DAOException {
-    Comment comment = commentDAO.findById(Comment.class, id);
+    Comment comment = commentDAO.findById(id);
     return commentMapper.toCommentDTO(comment);
   }
 
@@ -95,7 +95,7 @@ public class CommentEndpoint {
   @GET
   @Path("/")
   public List<CommentDTO> findAll() throws DAOException {
-    List<Comment> comments = commentDAO.findAll(Comment.class);
+    List<Comment> comments = commentDAO.findAll();
     return commentMapper.toCommentsDTO(comments);
   }
 
@@ -109,6 +109,6 @@ public class CommentEndpoint {
   @DELETE
   @Path("/{id}")
   public boolean delete(@PathParam("id") long id) throws DAOException {
-    return commentDAO.delete(Comment.class, id);
+    return commentDAO.deleteById(id);
   }
 }
