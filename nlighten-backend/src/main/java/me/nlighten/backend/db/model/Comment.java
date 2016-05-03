@@ -8,11 +8,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * The Class Comment.
  * 
  * @author Lubo
  */
+@Getter
+@Setter
 @Entity
 @Table(name = "COMMENT")
 public class Comment extends TraceAble {
@@ -33,36 +38,4 @@ public class Comment extends TraceAble {
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
   @JoinColumn(name = "LESSON_ID")
   private Lesson lesson;
-
-  public String getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(String author) {
-    this.author = author;
-  }
-
-  public String getText() {
-    return text;
-  }
-
-  public void setText(String text) {
-    this.text = text;
-  }
-
-  public Course getCourse() {
-    return course;
-  }
-
-  public void setCourse(Course course) {
-    this.course = course;
-  }
-
-  public Lesson getLesson() {
-    return lesson;
-  }
-
-  public void setLesson(Lesson lesson) {
-    this.lesson = lesson;
-  }
 }

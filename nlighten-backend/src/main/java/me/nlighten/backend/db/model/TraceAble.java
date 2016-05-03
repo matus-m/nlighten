@@ -14,11 +14,16 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * The Class TraceAble.
  * 
  * @author Lubo
  */
+@Getter
+@Setter
 // @EntityListeners(TraceUser.class)
 @MappedSuperclass
 public class TraceAble {
@@ -46,69 +51,9 @@ public class TraceAble {
   @Temporal(TemporalType.DATE)
   private Date updateDate;
 
-  /** The created by. */
-  @Column(name = "CREATED_BY")
-  private String createdBy;
-
   /** The loaded from db. */
   @Transient
   private boolean loadedFromDB;
-
-  public long getId() {
-    return id;
-  }
-
-  public void setId(long id) {
-    this.id = id;
-  }
-
-  public String getCreationUser() {
-    return creationUser;
-  }
-
-  public void setCreationUser(String creationUser) {
-    this.creationUser = creationUser;
-  }
-
-  public String getModificationUser() {
-    return modificationUser;
-  }
-
-  public void setModificationUser(String modificationUser) {
-    this.modificationUser = modificationUser;
-  }
-
-  public Date getCreationDate() {
-    return creationDate;
-  }
-
-  public void setCreationDate(Date creationDate) {
-    this.creationDate = creationDate;
-  }
-
-  public Date getUpdateDate() {
-    return updateDate;
-  }
-
-  public void setUpdateDate(Date updateDate) {
-    this.updateDate = updateDate;
-  }
-
-  public String getCreatedBy() {
-    return createdBy;
-  }
-
-  public void setCreatedBy(String createdBy) {
-    this.createdBy = createdBy;
-  }
-
-  public boolean isLoadedFromDB() {
-    return loadedFromDB;
-  }
-
-  public void setLoadedFromDB(boolean loadedFromDB) {
-    this.loadedFromDB = loadedFromDB;
-  }
 
   @PostLoad
   public void postLoad() {
