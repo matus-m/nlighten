@@ -85,6 +85,32 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-client</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>fr.xebia.extras</groupId>
+      <artifactId>selma-processor</artifactId>
+      <version>0.13</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>fr.xebia.extras</groupId>
+      <artifactId>selma</artifactId>
+      <version>0.13</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.16.8</version>
+      <scope>provided</scope>
+    </dependency>
+
     <!-- Test dependencies -->
 
     <dependency>
@@ -111,6 +137,11 @@
       <groupId>org.jboss.arquillian.extension</groupId>
       <artifactId>arquillian-persistence-dbunit</artifactId>
       <version>1.0.0.Alpha7</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-jackson-provider</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

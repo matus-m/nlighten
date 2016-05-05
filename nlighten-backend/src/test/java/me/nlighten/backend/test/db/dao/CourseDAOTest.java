@@ -10,7 +10,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 
-import me.nlighten.backend.db.dao.GenericDAO;
+import me.nlighten.backend.db.dao.CommentDAO;
+import me.nlighten.backend.db.dao.CourseDAO;
+import me.nlighten.backend.db.dao.LessonDAO;
+import me.nlighten.backend.db.dao.QuestionDAO;
 import me.nlighten.backend.db.dao.exception.DAOException;
 import me.nlighten.backend.db.model.Comment;
 import me.nlighten.backend.db.model.Course;
@@ -32,19 +35,19 @@ public class CourseDAOTest extends AbstractTest {
 
   /** The course dao. */
   @Inject
-  private GenericDAO<Course> courseDAO;
+  private CourseDAO courseDAO;
 
   /** The comment dao. */
   @Inject
-  private GenericDAO<Comment> commentDAO;
+  private CommentDAO commentDAO;
 
   /** The lesson dao. */
   @Inject
-  private GenericDAO<Lesson> lessonDAO;
+  private LessonDAO lessonDAO;
 
   /** The question dao. */
   @Inject
-  private GenericDAO<Question> questionDAO;
+  private QuestionDAO questionDAO;
 
   /**
    * Save test.
@@ -100,7 +103,7 @@ public class CourseDAOTest extends AbstractTest {
       Assert.assertNotNull(savedCourse);
       Assert.assertEquals(course.getId(), savedCourse.getId());
 
-      Course foundCourse = courseDAO.findById(Course.class, savedCourse.getId());
+      Course foundCourse = courseDAO.findById(savedCourse.getId());
       Assert.assertNotNull(foundCourse);
       Assert.assertEquals(savedCourse.getId(), foundCourse.getId());
     } catch (DAOException e) {
@@ -122,7 +125,7 @@ public class CourseDAOTest extends AbstractTest {
       Assert.assertNotNull(savedCourse);
       Assert.assertEquals(course.getId(), savedCourse.getId());
 
-      List<Course> foundCourses = courseDAO.findAll(Course.class);
+      List<Course> foundCourses = courseDAO.findAll();
       Assert.assertNotNull(foundCourses);
       Assert.assertTrue(foundCourses.size() > 0);
     } catch (DAOException e) {
@@ -166,9 +169,9 @@ public class CourseDAOTest extends AbstractTest {
         Assert.assertEquals(question.getId(), savedQuestion.getId());
       }
 
-      Boolean isDeleted = courseDAO.delete(savedCourse);
+      Boolean isDeleted = courseDAO.deleteById(savedCourse.getId());
       Assert.assertTrue(isDeleted);
-      Course foundCourse = courseDAO.findById(Course.class, savedCourse.getId());
+      Course foundCourse = courseDAO.findById(savedCourse.getId());
       Assert.assertNull(foundCourse);
     } catch (DAOException e) {
       logger.error(e.getMessageKey().name());
