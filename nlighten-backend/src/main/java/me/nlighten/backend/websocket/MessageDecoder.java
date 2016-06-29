@@ -11,6 +11,11 @@ import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 
+/**
+ * The Class MessageDecoder.
+ * 
+ * @author Lubo
+ */
 public class MessageDecoder implements Decoder.Text<Message> {
 
   @Override

@@ -18,17 +18,31 @@ import me.nlighten.backend.db.dao.EventDAO;
 import me.nlighten.backend.db.dao.exception.DAOException;
 import me.nlighten.backend.db.model.Event;
 
+/**
+ * The Class DeviceSessionHandler.
+ * 
+ * @author Lubo
+ */
 @Named("handler")
 @ApplicationScoped
 public class DeviceSessionHandler {
 
+  /** The event dao. */
   @EJB
   private EventDAO eventDAO;
 
+  /** The sessions. */
   private final Set<Session> sessions = new HashSet<Session>();
 
+  /** The events. */
   private List<Event> events;
 
+  /**
+   * Send to all connected sessions.
+   *
+   * @param message the message
+   * @param event the event
+   */
   public void sendToAllConnectedSessions(Message message, String event) {
     for (Session session : sessions) {
       try {
@@ -41,6 +55,12 @@ public class DeviceSessionHandler {
     }
   }
 
+  /**
+   * Check and connect to event.
+   *
+   * @param session the session
+   * @param event the event
+   */
   public void checkAndConnectToEvent(Session session, String event) {
     try {
       Event foundEvent = eventDAO.findByTitle(event);
@@ -56,10 +76,20 @@ public class DeviceSessionHandler {
     }
   }
 
+  /**
+   * Adds the session.
+   *
+   * @param session the session
+   */
   public void addSession(Session session) {
     sessions.add(session);
   }
 
+  /**
+   * Removes the session.
+   *
+   * @param session the session
+   */
   public void removeSession(Session session) {
     sessions.remove(session);
   }

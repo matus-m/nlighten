@@ -17,24 +17,34 @@ import javax.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * The Class Event.
+ * 
+ * @author Lubo
+ */
 @Getter
 @Setter
 @Entity
 @Table(name = "EVENT")
 public class Event {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+  /** The id. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
 
-	private String title;
+  /** The title. */
+  private String title;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date startTime;
+  /** The start time. */
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date startTime;
 
-	private boolean onAir;
+  /** The on air. */
+  private boolean onAir;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "COURSE_ID")
-	private Course course;
+  /** The course. */
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+  @JoinColumn(name = "COURSE_ID")
+  private Course course;
 }

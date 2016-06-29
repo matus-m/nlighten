@@ -5,6 +5,9 @@ import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
 
+/**
+ * The Class MessageEncoder.
+ */
 public class MessageEncoder implements Encoder.Text<Message> {
 
   @Override
