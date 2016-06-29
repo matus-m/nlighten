@@ -58,4 +58,7 @@ public class CourseDTO extends TraceAbleDTO {
 
   /** The questions. */
   private Set<QuestionDTO> questions;
+  
+  /** The events. */
+  private Set<EventDTO> events;
 }
