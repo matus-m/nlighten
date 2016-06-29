@@ -1,4 +1,11 @@
-language: java
-jdk:
-  - oraclejdk8
-# before_script: cd nlighten-backend
+ language: java
+  jdk:
+ -- oraclejdk8
+ -deploy:
+ -  provider: openshift
+ -  user: $OPENSHIFT_USER
+ -  password: $OPENSHIFT_PASSWORD
+ -  app: $OPENSHIFT_APP
+ -  domain: $OPENSHIFT_DOMAIN
+ +  - oraclejdk8
+ +# before_script: cd nlighten-backend
