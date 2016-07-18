@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
@@ -42,12 +41,19 @@ public class DeviceSessionHandler {
    *
    * @param message the message
    * @param event the event
+   * @param userId the user id
    */
-  public void sendToAllConnectedSessions(Message message, String event) {
+  public void sendToAllConnectedSessions(Message message, String event, String userId) {
     for (Session session : sessions) {
       try {
-        if (session.isOpen() && session.getUserProperties().get("event").equals(event)) {
-          session.getBasicRemote().sendObject(message);
+        if (session.isOpen() && session.getUserProperties().get("event").equals(event)
+            && !session.getUserProperties().get("userId").equals(userId)) {
+          if (message.getReceivers() == null || message.getReceivers().isEmpty()) {
+            session.getBasicRemote().sendObject(message);
+          } else if (message.getReceivers() != null
+              && message.getReceivers().contains(session.getUserProperties().get("userId"))) {
+            session.getBasicRemote().sendObject(message);
+          }
         }
       } catch (Exception e) {
         sessions.remove(session);
@@ -60,15 +66,16 @@ public class DeviceSessionHandler {
    *
    * @param session the session
    * @param event the event
+   * @param userId the user id
    */
-  public void checkAndConnectToEvent(Session session, String event) {
+  public void checkAndConnectToEvent(Session session, String event, String userId) {
     try {
       Event foundEvent = eventDAO.findByTitle(event);
       Date currentDateAndTime = Calendar.getInstance().getTime();
       // check whether event exist and whether event is started
       if (currentDateAndTime.compareTo(foundEvent.getStartTime()) >= 0) {
         session.getUserProperties().put("event", event);
-        session.getUserProperties().put("userId", UUID.randomUUID().toString());
+        session.getUserProperties().put("userId", userId);
         addSession(session);
       }
     } catch (Exception e) {
@@ -99,7 +106,7 @@ public class DeviceSessionHandler {
   public void createEvent() throws ParseException {
     try {
       Event event = new Event();
-      event.setTitle("myEvent" + Math.random());
+      event.setTitle("myEvent" + sessions.size());
       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-dd hh:mm:ss");
       String dateInString = "2016-06-26 14:00:00";
       Date date = sdf.parse(dateInString);

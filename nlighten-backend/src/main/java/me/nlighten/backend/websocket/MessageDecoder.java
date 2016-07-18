@@ -34,7 +34,6 @@ public class MessageDecoder implements Decoder.Text<Message> {
     Message message = new Message();
     JsonObject obj = Json.createReader(new StringReader(stringMessage)).readObject();
     message.setMessage(obj.getString("message"));
-    message.setSender(obj.getString("sender"));
     JsonArray jsonReceivers = obj.getJsonArray("receivers");
     List<String> receivers = null;
     if (jsonReceivers != null) {

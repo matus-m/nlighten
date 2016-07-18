@@ -16,9 +16,11 @@ import org.slf4j.LoggerFactory;
 
 /**
  * The Class WebSocketEndpoint.
+ * 
+ * @author lubo
  */
 @ApplicationScoped
-@ServerEndpoint(value = "/courses/{event}", encoders = MessageEncoder.class,
+@ServerEndpoint(value = "/courses/{event}/{userId}", encoders = MessageEncoder.class,
     decoders = MessageDecoder.class)
 public class WebSocketEndpoint {
 
@@ -38,7 +40,8 @@ public class WebSocketEndpoint {
   @OnMessage
   public void onMessage(Message message, Session session) {
     String event = (String) session.getUserProperties().get("event");
-    sessionHandler.sendToAllConnectedSessions(message, event);
+    String userId = (String) session.getUserProperties().get("userId");
+    sessionHandler.sendToAllConnectedSessions(message, event, userId);
   }
 
   /**
@@ -56,10 +59,12 @@ public class WebSocketEndpoint {
    *
    * @param session the session
    * @param event the event
+   * @param userId the user id
    */
   @OnOpen
-  public void onOpen(Session session, @PathParam("event") final String event) {
-    sessionHandler.checkAndConnectToEvent(session, event);
+  public void onOpen(Session session, @PathParam("event") final String event,
+      @PathParam("userId") final String userId) {
+    sessionHandler.checkAndConnectToEvent(session, event, userId);
   }
 
   /**
