@@ -1,0 +1,23 @@
+<p>
+  course-new works!
+</p>
+<form #f="ngForm">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="name" [(ngModel)]="course.title" class="form-control" name="title" id="title" placeholder="Course title">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input type="description" [(ngModel)]="course.description" class="form-control"  name="description" id="description" placeholder="Course Description">
+  </div>
+  <div class="form-group">
+    <label for="tags">Tags</label>
+    <input type="tags" [(ngModel)]="course.tags" class="form-control" name="tags" id="tags" placeholder="">
+  </div>
+  <div class="form-group">
+    <label for="type">Type</label>
+    <input type="type" [(ngModel)]="course.type" class="form-control" name="type" id="type" placeholder="">
+  </div>
+</form>
+<a (click)="save()" class="btn btn-primary">Save</a>
+<a (click)="cancel()" class="btn btn-default">Cancel</a>

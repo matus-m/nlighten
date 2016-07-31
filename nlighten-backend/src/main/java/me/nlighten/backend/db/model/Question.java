@@ -15,44 +15,92 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
  * The Class Question.
- * 
+ *
  * @author Lubo
  */
 @NamedQueries({
-    @NamedQuery(name = "Question.loadById", query = "SELECT q FROM Question q WHERE q.id = :id")})
-@NamedEntityGraph(name = "questions.answers", attributeNodes = @NamedAttributeNode("answers") )
-@Getter
-@Setter
+  @NamedQuery(name = Question.LOAD_BY_ID, query = "SELECT q FROM Question q WHERE q.id = :id")})
+@NamedEntityGraph(name = "questions.answers", attributeNodes = @NamedAttributeNode("answers"))
 @Entity
 @Table(name = "QUESTION")
 public class Question extends TraceAble {
-  
-  /** The load by id constant. */
-  public static String LOAD_BY_ID = "Question.loadById";
 
-  /** The author. */
+  /**
+   * The load by id constant.
+   */
+  public static final String LOAD_BY_ID = "Question.loadById";
+
+  /**
+   * The author.
+   */
   private String author;
 
-  /** The text. */
+  /**
+   * The text.
+   */
   @Column(length = 2048)
   private String text;
 
-  /** The course. */
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+  /**
+   * The course.
+   */
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "COURSE_ID")
   private Course course;
 
-  /** The lesson. */
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+  /**
+   * The lesson.
+   */
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "LESSON_ID")
   private Lesson lesson;
 
-  /** The answers. */
+  /**
+   * The answers.
+   */
   @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, orphanRemoval = true)
   private Set<Answer> answers;
+
+  public String getAuthor() {
+    return author;
+  }
+
+  public void setAuthor(String author) {
+    this.author = author;
+  }
+
+  public String getText() {
+    return text;
+  }
+
+  public void setText(String text) {
+    this.text = text;
+  }
+
+  public Course getCourse() {
+    return course;
+  }
+
+  public void setCourse(Course course) {
+    this.course = course;
+  }
+
+  public Lesson getLesson() {
+    return lesson;
+  }
+
+  public void setLesson(Lesson lesson) {
+    this.lesson = lesson;
+  }
+
+  public Set<Answer> getAnswers() {
+    return answers;
+  }
+
+  public void setAnswers(Set<Answer> answers) {
+    this.answers = answers;
+  }
+
 }

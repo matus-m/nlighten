@@ -1,0 +1,15 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700);
+
+* {
+  box-sizing: border-box;
+}
+
+body, html, main, .main, .app, app {
+  min-height: 100%;
+  height: 100%;
+  background-color: #efefef;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
