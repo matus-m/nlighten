@@ -100,32 +100,4 @@ public class DeviceSessionHandler {
   public void removeSession(Session session) {
     sessions.remove(session);
   }
-
-  /////////////////////// test purposes ////////////////////////////////
-
-  public void createEvent() throws ParseException {
-    try {
-      Event event = new Event();
-      event.setTitle("myEvent" + sessions.size());
-      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-dd hh:mm:ss");
-      String dateInString = "2016-06-26 14:00:00";
-      Date date = sdf.parse(dateInString);
-      event.setStartTime(date);
-      eventDAO.save(event);
-    } catch (DAOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  public void findEvents() {
-    try {
-      events = eventDAO.findAll();
-    } catch (DAOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  public List<Event> getEvents() {
-    return events;
-  }
 }
