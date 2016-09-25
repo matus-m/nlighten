@@ -90,4 +90,7 @@ public class Course extends TraceAble {
   /** The questions. */
   @OneToMany(mappedBy = "course", fetch = FetchType.LAZY, orphanRemoval = true)
   private Set<Question> questions;
+
+  @OneToMany(mappedBy = "course", fetch = FetchType.LAZY, orphanRemoval = true)
+  private Set<Event> events;
 }

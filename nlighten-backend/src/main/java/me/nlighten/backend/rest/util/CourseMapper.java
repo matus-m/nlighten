@@ -31,7 +31,7 @@ public interface CourseMapper {
    * @param course the course
    * @return the course
    */
-  @Maps(withIgnoreFields = {"lessons", "comments", "questions"})
+  @Maps(withIgnoreFields = {"lessons", "comments", "questions", "events"})
   Course toCourse(CourseDTO courseDTO, Course course);
 
   /**
@@ -40,7 +40,7 @@ public interface CourseMapper {
    * @param course the course
    * @return the course dto
    */
-  @Maps(withIgnoreFields = {"lessons", "comments", "questions"})
+  @Maps(withIgnoreFields = {"lessons", "comments", "questions", "events"})
   CourseDTO toCourseDTO(Course course);
 
   /**
@@ -58,6 +58,6 @@ public interface CourseMapper {
    * @param courses the courses
    * @return the list
    */
-  @Maps(withIgnoreFields = {"lessons", "comments", "questions"})
+  @Maps(withIgnoreFields = {"lessons", "comments", "questions", "events"})
   List<CourseDTO> toCoursesDTO(List<Course> courses);
 }

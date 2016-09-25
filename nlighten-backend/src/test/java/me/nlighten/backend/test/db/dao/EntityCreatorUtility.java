@@ -10,6 +10,7 @@ import me.nlighten.backend.db.enums.Difficulty;
 import me.nlighten.backend.db.model.Answer;
 import me.nlighten.backend.db.model.Comment;
 import me.nlighten.backend.db.model.Course;
+import me.nlighten.backend.db.model.Event;
 import me.nlighten.backend.db.model.Lesson;
 import me.nlighten.backend.db.model.Question;
 
@@ -50,16 +51,19 @@ public class EntityCreatorUtility {
     Set<Lesson> lessons = new HashSet<>();
     Set<Comment> comments = new HashSet<>();
     Set<Question> questions = new HashSet<>();
+    Set<Event> events = new HashSet<>();
 
     for (int i = 0; i < random.nextInt(3); i++) {
       lessons.add(createLesson(course));
       comments.add(createComment(course, null));
       questions.add(createQuestion(course, null));
+      events.add(createEvent(course));
     }
 
     course.setLessons(lessons);
     course.setComments(comments);
     course.setQuestions(questions);
+    course.setEvents(events);
     return course;
   }
 
@@ -142,4 +146,17 @@ public class EntityCreatorUtility {
     return answer;
   }
 
+  /**
+   * Creates the event.
+   *
+   * @param course the course
+   * @return the event
+   */
+  public static Event createEvent(Course course) {
+    Event event = new Event();
+    event.setTitle("title");
+    event.setOnAir(random.nextBoolean());
+    event.setCourse(course);
+    return event;
+  }
 }
