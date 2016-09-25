@@ -1,7 +1,5 @@
 package me.nlighten.backend.websocket;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -10,11 +8,12 @@ import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
+import javax.inject.Inject;
 import javax.websocket.Session;
 
+import org.slf4j.Logger;
+
 import me.nlighten.backend.db.dao.EventDAO;
-import me.nlighten.backend.db.dao.exception.DAOException;
 import me.nlighten.backend.db.model.Event;
 
 /**
@@ -22,9 +21,12 @@ import me.nlighten.backend.db.model.Event;
  * 
  * @author Lubo
  */
-@Named("handler")
 @ApplicationScoped
 public class DeviceSessionHandler {
+
+  /** The logger. */
+  @Inject
+  private Logger logger;
 
   /** The event dao. */
   @EJB
@@ -56,7 +58,7 @@ public class DeviceSessionHandler {
           }
         }
       } catch (Exception e) {
-        sessions.remove(session);
+        logger.error("Error durring sending message to all conected users: " + e.getMessage());
       }
     }
   }
@@ -79,7 +81,7 @@ public class DeviceSessionHandler {
         addSession(session);
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      logger.error("Error durring connecting to event: " + e.getMessage());
     }
   }
 

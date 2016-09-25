@@ -1,15 +1,10 @@
 package me.nlighten.backend.websocket;
 
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
 import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
+
+import com.google.gson.Gson;
 
 /**
  * The Class MessageDecoder.
@@ -18,8 +13,12 @@ import javax.websocket.EndpointConfig;
  */
 public class MessageDecoder implements Decoder.Text<Message> {
 
+  private static Gson gson = new Gson();
+
   @Override
-  public void init(final EndpointConfig config) {}
+  public void init(final EndpointConfig config) {
+    System.out.println("init DECODER");
+  }
 
   @Override
   public void destroy() {}
@@ -31,18 +30,6 @@ public class MessageDecoder implements Decoder.Text<Message> {
 
   @Override
   public Message decode(String stringMessage) throws DecodeException {
-    Message message = new Message();
-    JsonObject obj = Json.createReader(new StringReader(stringMessage)).readObject();
-    message.setMessage(obj.getString("message"));
-    JsonArray jsonReceivers = obj.getJsonArray("receivers");
-    List<String> receivers = null;
-    if (jsonReceivers != null) {
-      receivers = new ArrayList<>();
-      for (int i = 0; i < jsonReceivers.size(); i++) {
-        receivers.add(jsonReceivers.getString(i));
-      }
-    }
-    message.setReceivers(receivers);
-    return message;
+    return gson.fromJson(stringMessage, Message.class);
   }
 }
