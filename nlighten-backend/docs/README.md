@@ -42,4 +42,4 @@ P.S.: Use of `CAMEL_CASE` formatting for enum\property keys is recommended.
 
 # Websocket
 
-Websocket endpoint can be reached under `http://localhost:8080/courses/{event}/{userId}`. To test connection, event has to created first and its starting time has to be before or same than the current time. Messages will be send to all users/students connected to session exclude the sender.
+Websocket endpoint can be reached under `http://localhost:8080/courses/{event}/{userId}`. To test connection, event has to created first and its starting time has to be before or same than the current time. Messages will be send to all users/students connected to session exclude the sender. Message has to be in `JSON` format `{'message':'message content', 'receivers':['student01']}`.
