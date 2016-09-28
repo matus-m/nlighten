@@ -1,17 +1,16 @@
-import {
-  beforeEachProviders,
-  it,
-  describe,
-  expect,
-  inject
-} from '@angular/core/testing';
+/* tslint:disable:no-unused-variable */
+
+import { TestBed, async, inject } from '@angular/core/testing';
 import { HomeServiceService } from './home-service.service';
 
-describe('HomeService Service', () => {
-  beforeEachProviders(() => [HomeServiceService]);
+describe('Service: HomeService', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [HomeServiceService]
+    });
+  });
 
-  it('should ...',
-      inject([HomeServiceService], (service: HomeServiceService) => {
+  it('should get created', inject([HomeServiceService], (service: HomeServiceService) => {
     expect(service).toBeTruthy();
   }));
 });

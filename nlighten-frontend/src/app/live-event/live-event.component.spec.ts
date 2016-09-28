@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { CourseNewComponent } from './course-new.component';
+import { LiveEventComponent } from './live-event.component';
 
-describe('Component: CourseNewComponent', () => {
+describe('Component: LiveEvent', () => {
   it('should create an instance', () => {
-    let component = new CourseNewComponent(null);
+    let component = new LiveEventComponent();
     expect(component).toBeTruthy();
   });
 });

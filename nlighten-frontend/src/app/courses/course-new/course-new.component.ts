@@ -3,7 +3,6 @@ import {CoursesService} from '../courses.service';
 import {Course} from '../course.model';
 
 @Component({
-  moduleId: module.id,
   selector: 'app-course-new',
   templateUrl: 'course-new.component.html',
   providers: [CoursesService],
@@ -11,7 +10,7 @@ import {Course} from '../course.model';
 })
 export class CourseNewComponent implements OnInit {
 
-  private course:Course
+  private course:Course;
 
   constructor(private service: CoursesService) {}
 

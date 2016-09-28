@@ -1,28 +1,10 @@
-import { provideRouter, RouterConfig }  from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders }  from '@angular/core';
 
-import { HomeRoutes } from './home/home.routes';
-import { CourseRoutes } from './courses/courses.routes';
-import { AppComponent } from './app.component';
-import { PageNotFoundComponent } from './shared/pageNotFound.component';
-
-// import { LoginRoutes,
-//          AUTH_PROVIDERS }     from './login.routes';
-
-import { CanDeactivateGuard } from './interfaces';
-
-const auxRoutes: RouterConfig = [
-  { path: '**', component: PageNotFoundComponent }
+const appRoutes: Routes = [
+    { path: '', redirectTo: 'home', pathMatch: 'full'},
+    { path: 'courses', loadChildren: 'app/courses/courses.module#CourseModule' },
+    { path: 'profile', loadChildren: 'app/profile/profile.module#ProfileModule' }
 ];
 
-export const routes: RouterConfig = [
-  ...HomeRoutes,
-  ...CourseRoutes,
-  ...auxRoutes
-  //add other routes
-];
-
-export const APP_ROUTER_PROVIDERS = [
-  provideRouter(routes),
-  //   AUTH_PROVIDERS,
-  CanDeactivateGuard
-];
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

@@ -1,11 +1,12 @@
-import { RouterConfig }          from '@angular/router';
-import { CoursesComponent }     from './courses.component';
-import { CourseNewComponent }   from './course-new/course-new.component';
-import { CourseDetailComponent }   from './course-detail/course-detail.component';
+import { ModuleWithProviders } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
-export const CourseRoutes: RouterConfig = [
-  { path: 'courses',  component: CoursesComponent },
-  { path: 'courses/new', component: CourseNewComponent },
-  { path: 'courses/:id', component: CourseDetailComponent }
-  
-];
+import { CourseListComponent } from './course-list/course-list.component';
+import { CourseNewComponent } from './course-new/course-new.component';
+import { CourseDetailComponent } from './course-detail/course-detail.component';
+
+export const routing: ModuleWithProviders = RouterModule.forChild([
+  { path: '', component: CourseListComponent },
+  { path: 'new', component: CourseNewComponent },
+  { path: ':id', component: CourseDetailComponent }
+]);

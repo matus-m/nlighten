@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { Course } from './course.model';
 
 @Component({
     selector: "course-card",
-    directives: [ROUTER_DIRECTIVES],
     styles: [`
         .course-card {
             padding: 15px;
@@ -17,7 +16,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
         }
     `],
     template: `
-        <div class="course-card" >
+        <div class="course-card shadow-1" >
             <a [routerLink]="[course.id]" class="menu-item"><span class="course-title">{{course.title}}</span> </a>
             <p class="course-description">{{course.description}}</p> 
         </div>

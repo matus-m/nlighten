@@ -1,10 +1,10 @@
-import { NlightenPage } from './app.po';
+import { InterPage } from './app.po';
 
-describe('nlighten App', function() {
-  let page: NlightenPage;
+describe('Nlighten App', function() {
+  let page: InterPage;
 
   beforeEach(() => {
-    page = new NlightenPage();
+    page = new InterPage();
   });
 
   it('should display message saying app works', () => {

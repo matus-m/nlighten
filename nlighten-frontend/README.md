@@ -1,13 +1,16 @@
-# Nlighten
+# Nlighten Frontend
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.10.
+This is the web UI for [Nlighten](https://github.com/yntelectual/nlighten) project based on Angular2. 
 
-## Development server
+The project is in a very early stage and this documentation will be improved over time.
+
+## Local setup
+The project is based on [angular-cli](https://github.com/angular/angular-cli), therefore you can use all of its commands to run, test and build the project. 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/route/class`.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
 
 ## Build
 

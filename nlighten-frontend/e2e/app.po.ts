@@ -1,4 +1,6 @@
-export class NlightenPage {
+import { browser, element, by } from 'protractor/globals';
+
+export class InterPage {
   navigateTo() {
     return browser.get('/');
   }

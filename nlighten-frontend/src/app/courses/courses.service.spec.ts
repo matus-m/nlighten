@@ -1,17 +1,18 @@
-import {
-  beforeEachProviders,
-  it,
-  describe,
-  expect,
-  inject
-} from '@angular/core/testing';
+/* tslint:disable:no-unused-variable */
+
+import { TestBed, async, inject } from '@angular/core/testing';
 import { CoursesService } from './courses.service';
+import { HttpModule } from '@angular/http';
 
-describe('CoursesService Service', () => {
-  beforeEachProviders(() => [CoursesService]);
+describe('Service: CourseService', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [CoursesService],
+      imports: [HttpModule]
+    });
+  });
 
-  it('should ...',
-      inject([CoursesService], (service: CoursesService) => {
+  it('should be created', inject([CoursesService], (service: CoursesService) => {
     expect(service).toBeTruthy();
   }));
 });
