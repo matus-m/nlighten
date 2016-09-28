@@ -1,55 +1,44 @@
 {
-  "name": "Nlighten-Frontend",
-  "version": "1.0.0",
-  "description": "Angular 1.x based frontend for Nlighten.",
-  "scripts": {
-    "build": "webpack --config webpack.build.js --bail",
-    "dev": "webpack-dev-server --history-api-fallback --inline --progress --open",
-    "test": "karma start",
-    "test:live": "karma start --auto-watch --no-single-run",
-	"start" : "npm run dev"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yntelectual/nlighten.git"
-  },
-  "author": "yntelectual",
+  "name": "nlighten",
+  "version": "0.0.0",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/yntelectual/nlighten/issues"
+  "angular-cli": {},
+  "scripts": {
+    "start": "ng serve",
+    "lint": "tslint \"src/**/*.ts\"",
+    "test": "ng test",
+    "pree2e": "webdriver-manager update",
+    "e2e": "protractor"
   },
-  "homepage": "https://github.com/yntelectual/nlighten",
+  "private": true,
   "dependencies": {
-    "angular": "^1.5.0"
+    "@angular/common": "2.0.0",
+    "@angular/compiler": "2.0.0",
+    "@angular/core": "2.0.0",
+    "@angular/forms": "2.0.0",
+    "@angular/http": "2.0.0",
+    "@angular/platform-browser": "2.0.0",
+    "@angular/platform-browser-dynamic": "2.0.0",
+    "@angular/router": "3.0.0",
+    "core-js": "^2.4.1",
+    "rxjs": "5.0.0-beta.12",
+    "ts-helpers": "^1.1.1",
+    "zone.js": "^0.6.23"
   },
   "devDependencies": {
-    "angular-mocks": "^1.5.0",
-    "autoprefixer": "^6.0.3",
-    "babel-core": "^6.2.1",
-    "babel-loader": "^6.2.0",
-    "babel-preset-es2015": "^6.1.18",
-    "file-loader": "^0.8.4",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "html-webpack-plugin": "^2.7.1",
-    "isparta-instrumenter-loader": "^1.0.0",
-    "jasmine-core": "^2.3.4",
-    "karma": "^0.13.14",
-    "karma-coverage": "^0.5.3",
-    "karma-jasmine": "^0.3.6",
-    "karma-phantomjs-launcher": "^1.0.0",
-    "karma-sourcemap-loader": "^0.3.6",
-    "karma-spec-reporter": "0.0.24",
-    "karma-webpack": "^1.7.0",
-    "node-libs-browser": "^1.0.0",
-    "phantomjs": "^2.1.3",
-    "phantomjs-prebuilt": "^2.1.4",
-    "postcss-loader": "^0.8.0",
-    "css-loader": "^0.23.0",
-    "raw-loader": "^0.5.1",
-    "style-loader": "^0.13.0",
-    "null-loader": "^0.1.1",
-	
-    "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.1"
+    "@types/jasmine": "^2.2.30",
+    "angular-cli": "1.0.0-beta.15",
+    "codelyzer": "~0.0.26",
+    "jasmine-core": "2.4.1",
+    "jasmine-spec-reporter": "2.5.0",
+    "karma": "1.2.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-cli": "^1.0.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-remap-istanbul": "^0.2.1",
+    "protractor": "4.0.5",
+    "ts-node": "1.2.1",
+    "tslint": "3.13.0",
+    "typescript": "2.0.2"
   }
 }

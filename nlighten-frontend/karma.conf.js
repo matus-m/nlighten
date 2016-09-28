@@ -1,52 +1,38 @@
-// Reference: http://karma-runner.github.io/0.12/config/configuration-file.html
-module.exports = function karmaConfig (config) {
+// Karma configuration file, see link for more information
+// https://karma-runner.github.io/0.13/config/configuration-file.html
+
+module.exports = function (config) {
   config.set({
-    frameworks: [
-      // Reference: https://github.com/karma-runner/karma-jasmine
-      // Set framework to jasmine
-      'jasmine'
+    basePath: '',
+    frameworks: ['jasmine', 'angular-cli'],
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-remap-istanbul'),
+      require('angular-cli/plugins/karma')
     ],
-
-    reporters: [
-      // Reference: https://github.com/mlex/karma-spec-reporter
-      // Set reporter to print detailed results to console
-      'spec',
-
-      // Reference: https://github.com/karma-runner/karma-coverage
-      // Output code coverage files
-      'coverage'
-    ],
-
     files: [
-      // Grab all files in the app folder that contain .test.
-      'src/tests.webpack.js'
+      { pattern: './src/test.ts', watched: false }
     ],
-
     preprocessors: {
-      // Reference: http://webpack.github.io/docs/testing.html
-      // Reference: https://github.com/webpack/karma-webpack
-      // Convert files with webpack and load sourcemaps
-      'src/tests.webpack.js': ['webpack', 'sourcemap']
+      './src/test.ts': ['angular-cli']
     },
-
-    browsers: [
-      // Run tests using PhantomJS
-      'PhantomJS'
-    ],
-
-    singleRun: true,
-
-    // Configure code coverage reporter
-    coverageReporter: {
-      dir: 'build/coverage/',
-      type: 'html'
+    remapIstanbulReporter: {
+      reports: {
+        html: 'coverage',
+        lcovonly: './coverage/coverage.lcov'
+      }
     },
-
-    webpack: require('./webpack.test'),
-
-    // Hide webpack build information from output
-    webpackMiddleware: {
-      noInfo: true
-    }
+    angularCli: {
+      config: './angular-cli.json',
+      environment: 'dev'
+    },
+    reporters: ['progress', 'karma-remap-istanbul'],
+    port: 9876,
+    colors: true,
+    logLevel: config.LOG_INFO,
+    autoWatch: true,
+    browsers: ['Chrome'],
+    singleRun: false
   });
 };

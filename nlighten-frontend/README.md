@@ -1,41 +1,34 @@
-# Nlighten frontend
+# Nlighten Frontend
 
-Angular 1.x based frontend for Nlighten. 
+This is the web UI for [Nlighten](https://github.com/yntelectual/nlighten) project based on Angular2. 
 
-## Installation
+The project is in a very early stage and this documentation will be improved over time.
 
-Make sure you have `node` and `npm` installed. After cloning the repo, go to `nlighten-frontend` and execute the following:
+## Local setup
+The project is based on [angular-cli](https://github.com/angular/angular-cli), therefore you can use all of its commands to run, test and build the project. 
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-```shell
-# install all dependencies
-$ npm install
-# start the server with live reload 
-$ npm start
-```
+## Code scaffolding
 
-## Scripts
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
 
-Scripts are predefined tasks that can be run via `npm run [script]`, for example: `npm run test`.
+## Build
 
-* `build` - generate a minified build to dist folder
-* `dev` - start development server, try it by opening `http://localhost:8080/`
-* `test` - run all tests
-* `test:live` - continuously run unit tests watching for changes
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Getting started
+## Running unit tests
 
-This project uses `webpack` for module loading and resource transformation. Running `npm start` or `npm run dev` will start a `webpack-dev-server` instance that does the following: 
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-* compile, process and bundle all dependencies of the project
-* start a server at [http://localhost:8080]() with the version of our app
-* watch for any changes in your files and reload the browser automatically
+## Running end-to-end tests
 
-For more info in webpack see the [official page](http://webpack.github.io/). 
-For more info on Angular head over to [Angular.com](https://angularjs.org/)
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). 
+Before running the tests make sure you are serving the app via `ng serve`.
 
+## Deploying to Github Pages
 
-## Testing 
+Run `ng github-pages:deploy` to deploy to Github Pages.
 
-TODO add more info on Angular testing, Karma, etc.
+## Further help
 
-
+To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

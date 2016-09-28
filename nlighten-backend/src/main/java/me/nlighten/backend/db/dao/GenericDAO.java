@@ -67,7 +67,6 @@ public class GenericDAO<T> {
       em.flush();
       return t;
     } catch (Exception e) {
-      e.printStackTrace();
       throw new DAOException(DAOMessageException.OBJECT_COULD_NOT_BE_SAVED, e);
     }
   }
