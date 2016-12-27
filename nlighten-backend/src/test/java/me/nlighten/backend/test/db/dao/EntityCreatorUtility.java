@@ -13,6 +13,7 @@ import me.nlighten.backend.db.model.Course;
 import me.nlighten.backend.db.model.Event;
 import me.nlighten.backend.db.model.Lesson;
 import me.nlighten.backend.db.model.Question;
+import me.nlighten.backend.db.model.User;
 
 /**
  * The Class EntityCreatorUtility, is for creating object instances with random data.
@@ -158,5 +159,23 @@ public class EntityCreatorUtility {
     event.setOnAir(random.nextBoolean());
     event.setCourse(course);
     return event;
+  }
+
+  public static User createUser() {
+
+    String userString = "user" + random.nextInt();
+
+    User user = new User();
+    user.setUsername(userString);
+    user.setEmail(userString + "@localhost");
+    user.setPassword(userString);
+
+    Event ownedEvent = createEvent(createCourse());
+    Event event = createEvent(createCourse());
+
+    user.getEvents().add(ownedEvent);
+    user.getSuscribedEvents().add(event);
+
+    return user;
   }
 }
