@@ -1,5 +1,6 @@
 package me.nlighten.backend.test.db.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Random;
@@ -16,7 +17,8 @@ import me.nlighten.backend.db.model.Question;
 import me.nlighten.backend.db.model.User;
 
 /**
- * The Class EntityCreatorUtility, is for creating object instances with random data.
+ * The Class EntityCreatorUtility, is for creating object instances with random
+ * data.
  * 
  * @author Lubo3
  */
@@ -28,7 +30,8 @@ public class EntityCreatorUtility {
   /**
    * Instantiates a new entity creator utility.
    */
-  private EntityCreatorUtility() {}
+  private EntityCreatorUtility() {
+  }
 
   /**
    * Creates the course.
@@ -40,7 +43,7 @@ public class EntityCreatorUtility {
     course.setTitle("name" + random.nextInt());
     course.setDescription("description" + random.nextInt());
     course.setTags("tags" + random.nextInt());
-    course.setAuthor("author" + random.nextInt());
+    course.setAuthor(createAuthor());
     course.setCourseType(CourseType.values()[random.nextInt(CourseType.values().length)]);
     course.setLanguage("language" + random.nextInt());
     course.setDuration(new Date());
@@ -71,7 +74,8 @@ public class EntityCreatorUtility {
   /**
    * Creates the lesson.
    *
-   * @param course the course
+   * @param course
+   *          the course
    * @return the lesson
    */
   public static Lesson createLesson(Course course) {
@@ -97,13 +101,15 @@ public class EntityCreatorUtility {
   /**
    * Creates the comment.
    *
-   * @param course the course
-   * @param lesson the lesson
+   * @param course
+   *          the course
+   * @param lesson
+   *          the lesson
    * @return the comment
    */
   public static Comment createComment(Course course, Lesson lesson) {
     Comment comment = new Comment();
-    comment.setAuthor("author" + random.nextInt());
+    comment.setAuthor(createAuthor());
     comment.setText("text" + random.nextInt());
     comment.setCourse(course);
     comment.setLesson(lesson);
@@ -113,13 +119,15 @@ public class EntityCreatorUtility {
   /**
    * Creates the question.
    *
-   * @param course the course
-   * @param lesson the lesson
+   * @param course
+   *          the course
+   * @param lesson
+   *          the lesson
    * @return the question
    */
   public static Question createQuestion(Course course, Lesson lesson) {
     Question question = new Question();
-    question.setAuthor("author" + random.nextInt());
+    question.setAuthor(createAuthor());
     question.setText("text" + random.nextInt());
     question.setCourse(course);
     question.setLesson(lesson);
@@ -136,12 +144,13 @@ public class EntityCreatorUtility {
   /**
    * Creates the answer.
    *
-   * @param question the question
+   * @param question
+   *          the question
    * @return the answer
    */
   public static Answer createAnswer(Question question) {
     Answer answer = new Answer();
-    answer.setAuthor("author" + random.nextInt());
+    answer.setAuthor(createAuthor());
     answer.setText("text" + random.nextInt());
     answer.setQuestion(question);
     return answer;
@@ -150,7 +159,8 @@ public class EntityCreatorUtility {
   /**
    * Creates the event.
    *
-   * @param course the course
+   * @param course
+   *          the course
    * @return the event
    */
   public static Event createEvent(Course course) {
@@ -178,4 +188,34 @@ public class EntityCreatorUtility {
 
     return user;
   }
+  
+
+  public static User updatedUser() {
+    User user = createUser();
+    user.setUsername("moderator");
+    user.setEmail("moderator@localhost");
+    user.setPassword("p@$$w0r2");
+    return null;
+  }
+
+  public static User createAuthor() {
+    User author = new User();
+    author.setUsername("admin");
+    author.setEmail("admin@localhost");
+    author.setPassword("password");
+    author.setAnswers(new ArrayList<>());
+    author.setEvents(new ArrayList<>());
+    author.setSuscribedEvents(new ArrayList<>());
+
+    return author;
+  }
+
+  public static User updatedAuthor() {
+    User author = createAuthor();
+    author.setUsername("collaborator");
+    author.setEmail("collaborator@localhost");
+    return author;
+  }
+
+
 }
