@@ -23,6 +23,7 @@ import me.nlighten.backend.db.enums.Difficulty;
 import me.nlighten.backend.db.model.Course;
 import me.nlighten.backend.rest.util.JaxRsActivator;
 import me.nlighten.backend.test.AbstractTest;
+import me.nlighten.backend.test.db.dao.EntityCreatorUtility;
 
 /**
  * The Class CourseEndpointTest.
@@ -51,6 +52,7 @@ public class CourseEndpointTest extends AbstractTest {
   public void createTest() throws Exception {
     try {
       Course course = new Course();
+      course.setAuthor(EntityCreatorUtility.createAuthor());
       course.setTitle("title_test");
       course.setDescription("description_test");
       course.setTags("tags_test");
@@ -83,6 +85,7 @@ public class CourseEndpointTest extends AbstractTest {
   public void updateTest() throws Exception {
     try {
       Course course = new Course();
+      course.setAuthor(EntityCreatorUtility.updatedAuthor());
       course.setId(1L);
       course.setTitle("changed_title_test");
       course.setDescription("changed_description_test");

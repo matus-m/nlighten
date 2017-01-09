@@ -21,6 +21,7 @@ import org.junit.runner.RunWith;
 import me.nlighten.backend.db.model.Question;
 import me.nlighten.backend.rest.util.JaxRsActivator;
 import me.nlighten.backend.test.AbstractTest;
+import me.nlighten.backend.test.db.dao.EntityCreatorUtility;
 
 /**
  * The Class QuestionEndpointTest.
@@ -49,7 +50,7 @@ public class QuestionEndpointTest extends AbstractTest {
   public void createTest() throws Exception {
     try {
       Question question = new Question();
-      question.setAuthor("author_test");
+      question.setAuthor(EntityCreatorUtility.createAuthor());
       question.setText("text_test");
 
       ResteasyClient client = new ResteasyClientBuilder().build();
@@ -77,7 +78,7 @@ public class QuestionEndpointTest extends AbstractTest {
     try {
       Question question = new Question();
       question.setId(1L);
-      question.setAuthor("changed_author_test");
+      question.setAuthor(EntityCreatorUtility.updatedAuthor());
       question.setText("changed_text_test");
 
       ResteasyClient client = new ResteasyClientBuilder().build();

@@ -21,6 +21,7 @@ import org.junit.runner.RunWith;
 import me.nlighten.backend.db.model.Comment;
 import me.nlighten.backend.rest.util.JaxRsActivator;
 import me.nlighten.backend.test.AbstractTest;
+import me.nlighten.backend.test.db.dao.EntityCreatorUtility;
 
 /**
  * The Class CommentEndpointTest.
@@ -49,7 +50,7 @@ public class CommentEndpointTest extends AbstractTest {
   public void createTest() throws Exception {
     try {
       Comment comment = new Comment();
-      comment.setAuthor("author_test");
+      comment.setAuthor(EntityCreatorUtility.createAuthor());
       comment.setText("text_test");
 
       ResteasyClient client = new ResteasyClientBuilder().build();
@@ -76,7 +77,7 @@ public class CommentEndpointTest extends AbstractTest {
     try {
       Comment comment = new Comment();
       comment.setId(1L);
-      comment.setAuthor("changed_author_test");
+      comment.setAuthor(EntityCreatorUtility.updatedAuthor());
       comment.setText("changed_text_test");
 
       ResteasyClient client = new ResteasyClientBuilder().build();
