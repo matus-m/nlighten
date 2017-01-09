@@ -36,7 +36,8 @@ public class Question extends TraceAble {
   public static String LOAD_BY_ID = "Question.loadById";
 
   /** The author. */
-  private String author;
+  @ManyToOne(fetch = FetchType.LAZY)
+  private User author;
 
   /** The text. */
   @Column(length = 2048)

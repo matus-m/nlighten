@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedQueries;
@@ -28,9 +29,9 @@ import me.nlighten.backend.db.enums.Difficulty;
  * @author Lubo
  */
 @NamedQueries({
-    @NamedQuery(name = "Course.loadById", query = "SELECT c FROM Course c WHERE c.id = :id")})
-@NamedEntityGraph(name = "course.all", attributeNodes = {@NamedAttributeNode("lessons"),
-    @NamedAttributeNode("comments"), @NamedAttributeNode("questions")})
+    @NamedQuery(name = "Course.loadById", query = "SELECT c FROM Course c WHERE c.id = :id") })
+@NamedEntityGraph(name = "course.all", attributeNodes = { @NamedAttributeNode("lessons"),
+    @NamedAttributeNode("comments"), @NamedAttributeNode("questions") })
 @Getter
 @Setter
 @Entity
@@ -51,7 +52,8 @@ public class Course extends TraceAble {
   private String tags;
 
   /** The author. */
-  private String author;
+  @ManyToOne(fetch = FetchType.LAZY)
+  private User author;
 
   /** The Course type. */
   @Column(name = "COURSE_TYPE")

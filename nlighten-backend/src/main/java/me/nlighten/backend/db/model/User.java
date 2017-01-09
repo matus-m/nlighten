@@ -36,8 +36,15 @@ public class User extends TraceAble {
   @OneToMany(mappedBy = "owner")
   List<Event> events = new ArrayList<Event>();
 
-  /** The list of suscribed events */
+  /** The list of subscribed events */
   @ManyToMany(mappedBy = "participants")
-  List<Event> suscribedEvents = new ArrayList<>();
+  List<Event> suscribedEvents = new ArrayList<Event>();
+  
+  @OneToMany(mappedBy = "author")
+  List<Answer> answers = new ArrayList<Answer>();
+  
+  @OneToMany(mappedBy = "author")
+  List<Comment> comments = new ArrayList<Comment>();
+  
 
 }

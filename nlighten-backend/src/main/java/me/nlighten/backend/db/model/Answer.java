@@ -23,7 +23,9 @@ import lombok.Setter;
 public class Answer extends TraceAble {
 
   /** The author. */
-  private String author;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  private User author;
 
   /** The text. */
   @Column(length = 2048)
